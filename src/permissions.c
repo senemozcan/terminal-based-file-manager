@@ -48,9 +48,5 @@ int set_file_permissions(int argc, char *argv[]) {
   }
 
   // Prints success message and log the result
-  char result[300];
-  snprintf(result, sizeof(result), "Permission change was successful! File: %s, New permissions: %s\n", file_name, permission);
-  printf("%s", result);
-  print_log("mchmod", result);
-  return 0;  
+    
 }
