@@ -153,7 +153,18 @@ int search_in_file(int argc, char *argv[]) {
     return 1;
   }
 
-  
+    char buffer[1000];
+      int read_bytes;
+      while ((read_bytes = read(fd, buffer, sizeof(buffer))) > 0) {
+        if (strstr(buffer, search_string) != NULL) {
+          if (write(STDOUT_FILENO, buffer, read_bytes) == -1) {
+            perror("Error: Failed to read the file.");
+            return 1;
+          }
+          print_log("search_in_file", buffer);
+        }
+      }
+
   close(fd);
   return 0;
 }
